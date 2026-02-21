@@ -1,0 +1,15 @@
+[Unit]
+Description=Revactyl Laravel Scheduler
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+Restart=always
+ExecStart=/usr/bin/php {{APP_DIR}}/artisan schedule:work
+WorkingDirectory={{APP_DIR}}
+StandardOutput=append:/var/log/revactyl-scheduler.log
+StandardError=append:/var/log/revactyl-scheduler-error.log
+
+[Install]
+WantedBy=multi-user.target
